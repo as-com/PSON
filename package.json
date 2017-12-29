@@ -2,14 +2,14 @@
     "name": "pson",
     "description": "A super efficient binary serialization format for JSON.",
     "version": "2.0.0",
-    "author": "Daniel Wirtz <dcode@dcode.io>",
+    "author": "Andrew Sun",
     "main": "index.js",
     "repository": {
         "type": "git",
-        "url": "https://github.com/dcodeIO/PSON.git"
+        "url": "https://github.com/as-com/PSON.git"
     },
     "bugs": {
-        "url": "https://github.com/dcodeIO/PSON/issues"
+        "url": "https://github.com/as-com/PSON/issues"
     },
     "keywords": [
         "net",
@@ -24,7 +24,7 @@
     ],
     "license": "Apache-2.0",
     "engines": {
-        "node": ">=0.6"
+        "node": ">=6"
     },
     "dependencies": {
         "bytebuffer": "~3",
