@@ -11,23 +11,34 @@
     "bugs": {
         "url": "https://github.com/dcodeIO/PSON/issues"
     },
-    "keywords": ["net", "buffer", "serialization", "bytebuffer", "websocket", "webrtc", "json", "protobuf", "thrift"],
+    "keywords": [
+        "net",
+        "buffer",
+        "serialization",
+        "bytebuffer",
+        "websocket",
+        "webrtc",
+        "json",
+        "protobuf",
+        "thrift"
+    ],
     "license": "Apache-2.0",
     "engines": {
         "node": ">=0.6"
     },
     "dependencies": {
-        "bytebuffer": "~3"
+        "bytebuffer": "~3",
+        "long": "^3.2.0"
     },
     "devDependencies": {
-        "metascript": "~0",
-        "closurecompiler": "~1",
-        "testjs": "~1"
+        "@types/bytebuffer": "^5.0.34",
+        "@types/node": "^8.5.2",
+        "testjs": "~1",
+        "typescript": "^2.6.2"
     },
     "scripts": {
         "test": "testjs",
         "build": "metascript src/PSON.js src/ > dist/PSON.js",
-        "compile": "ccjs dist/PSON.js > dist/PSON.min.js",
         "jsdoc": "jsdoc -c jsdoc.json",
         "make": "npm run-script build && npm run-script compile && npm test && npm run-script jsdoc"
     }

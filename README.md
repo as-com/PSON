@@ -87,7 +87,7 @@ require.config({
     "paths": {
         "Long": "/path/to/Long.js", // optional
         "ByteBuffer": "/path/to/ByteBufferAB.js",
-        "PSON": "/path/to/PSON.js"
+        "PSON": "/path/to/PSON.ts"
     },
     ...
 });

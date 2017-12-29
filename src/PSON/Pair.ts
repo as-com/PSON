@@ -1,31 +1,16 @@
 /**
- * @alias PSON.Pair
+ * Constructs a new abstract PSON encoder and decoder pair.
+ * @exports PSON.Pair
+ * @class An abstract PSON encoder and decoder pair.
+ * @constructor
+ * @abstract
  */
-PSON.Pair = (function() {
+import {Encoder} from "./Encoder";
+import {Decoder} from "./Decoder";
 
-    /**
-     * Constructs a new abstract PSON encoder and decoder pair.
-     * @exports PSON.Pair
-     * @class An abstract PSON encoder and decoder pair.
-     * @constructor
-     * @abstract
-     */
-    var Pair = function() {
-
-        /**
-         * Encoder.
-         * @type {!PSON.Encoder}
-         * @expose
-         */
-        this.encoder;
-
-        /**
-         * Decoder.
-         * @type {!PSON.Decoder}
-         * @expose
-         */
-        this.decoder;
-    };
+export abstract class Pair {
+    protected encoder: Encoder;
+    protected decoder: Decoder;
 
     /**
      * Encodes JSON to PSON.
@@ -33,9 +18,9 @@ PSON.Pair = (function() {
      * @returns {!ByteBuffer} PSON
      * @expose
      */
-    Pair.prototype.encode = function(json) {
+    encode(json: any) {
         return this.encoder.encode(json);
-    };
+    }
 
     /**
      * Encodes JSON straight to an ArrayBuffer of PSON.
@@ -43,9 +28,9 @@ PSON.Pair = (function() {
      * @returns {!ArrayBuffer} PSON as ArrayBuffer
      * @expose
      */
-    Pair.prototype.toArrayBuffer = function(json) {
+    toArrayBuffer(json: any) {
         return this.encoder.encode(json).toArrayBuffer();
-    };
+    }
 
     /**
      * Encodes JSON straight to a node Buffer of PSON.
@@ -53,9 +38,9 @@ PSON.Pair = (function() {
      * @returns {!Buffer} PSON as node Buffer
      * @expose
      */
-    Pair.prototype.toBuffer = function(json) {
+    toBuffer(json: any) {
         return this.encoder.encode(json).toBuffer();
-    };
+    }
 
     /**
      * Decodes PSON to JSON.
@@ -63,9 +48,9 @@ PSON.Pair = (function() {
      * @returns {*} JSON
      * @expose
      */
-    Pair.prototype.decode = function(pson) {
+    decode(pson: any) {
         return this.decoder.decode(pson);
-    };
+    }
+}
 
-    return Pair;
-})();
+
