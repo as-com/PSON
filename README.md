@@ -1,5 +1,8 @@
 ![PSON](https://raw.github.com/dcodeIO/PSON/master/PSON.png)
 ====
+
+This fork of PSON ports everything to TypeScript contains performance enhancements. Encoding is now about 300% faster.
+
 **PSON** is a super efficient binary serialization format for JSON focused on minimal encoding size.
 
 How does it work?

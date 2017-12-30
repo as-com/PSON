@@ -140,7 +140,7 @@ export class Encoder {
                             || val instanceof ArrayBuffer
                             || val instanceof Uint8Array
                             || val instanceof ByteBuffer) {
-                            val = ByteBuffer.wrap(val); // HOT SPOT
+                            val = ByteBuffer.wrap(val);
                             buf.writeUint8(BINARY);
                             buf.writeVarint32(val.remaining());
                             buf.append(val);

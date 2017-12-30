@@ -1,3 +1,7 @@
+import {Encoder} from "./Encoder";
+import {Decoder} from "./Decoder";
+import * as ByteBuffer from "bytebuffer";
+
 /**
  * Constructs a new abstract PSON encoder and decoder pair.
  * @exports PSON.Pair
@@ -5,9 +9,6 @@
  * @constructor
  * @abstract
  */
-import {Encoder} from "./Encoder";
-import {Decoder} from "./Decoder";
-
 export abstract class Pair {
     protected encoder: Encoder;
     protected decoder: Decoder;
@@ -18,7 +19,7 @@ export abstract class Pair {
      * @returns {!ByteBuffer} PSON
      * @expose
      */
-    encode(json: any) {
+    encode(json: any): ByteBuffer {
         return this.encoder.encode(json);
     }
 
