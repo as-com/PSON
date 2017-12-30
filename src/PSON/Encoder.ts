@@ -25,9 +25,8 @@ fbuf.compact(0, 4);
 export class Encoder {
 	/**
 	 * Dictionary hash.
-	 * @type {Object.<string,number>}
 	 */
-	private dict: { [key: string]: number } = {};
+	private dict = new Map<string, number>();
 
 	/**
 	 * Next dictionary index.
@@ -38,7 +37,7 @@ export class Encoder {
 	constructor(dict: string[] = [], private progressive: boolean, options: { [opt: string]: any }) {
 		if (dict) {
 			while (this.next < dict.length) {
-				this.dict[dict[this.next]] = this.next++;
+				this.dict.set(dict[this.next], this.next++);
 			}
 		}
 	}
@@ -84,9 +83,9 @@ export class Encoder {
 					if (val.length === 0) {
 						buf.writeUint8(ESTRING);
 					} else {
-						if (this.dict.hasOwnProperty(val)) {
+						if (this.dict.has(val)) {
 							buf.writeUint8(STRING_GET);
-							buf.writeVarint32(this.dict[val]);
+							buf.writeVarint32(<number> this.dict.get(val));
 						} else {
 							buf.writeUint8(STRING);
 							buf.writeVString(val);
@@ -161,13 +160,13 @@ export class Encoder {
 								for (i = 0; i < keys.length; i++) {
 									const key = keys[i];
 									if (typeof val[key] === 'undefined') continue;
-									if (this.dict.hasOwnProperty(key)) {
+									if (this.dict.has(key)) {
 										buf.writeUint8(STRING_GET);
-										buf.writeVarint32(this.dict[key]);
+										buf.writeVarint32(<number> this.dict.get(key));
 									} else {
 										if (this.progressive && !excluded) {
 											// Add to dictionary
-											this.dict[key] = this.next++;
+											this.dict.set(key, this.next++);
 											buf.writeUint8(STRING_ADD);
 										} else {
 											// Plain string
