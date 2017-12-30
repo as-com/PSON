@@ -10,8 +10,8 @@ import * as Long from "long";
  * Float conversion test buffer.
  * @type {!ByteBuffer}
  */
-const fbuf = new ByteBuffer(4);
-fbuf.length = 4;
+const fbuf = new ByteBuffer(4); // TODO: Figure out exactly what this is for
+fbuf.compact(0, 4);
 
 /**
  * Constructs a new PSON Encoder.
