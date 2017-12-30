@@ -32,7 +32,7 @@ export class Decoder {
 
         const le = buf.littleEndian;
         try {
-            const val = this._decodeValue(buf.LE());
+            const val = this.decodeValue(buf.LE());
             buf.littleEndian = le;
             return val;
         } catch (e) {
@@ -47,7 +47,7 @@ export class Decoder {
      * @returns {?} JSON
      * @private
      */
-    _decodeValue(buf: ByteBuffer): any {
+    private decodeValue(buf: ByteBuffer): any {
         let t = buf.readUint8();
         if (t <= MAX) {
             return ByteBuffer.zigZagDecode32(t);
@@ -69,14 +69,14 @@ export class Decoder {
                     t = buf.readVarint32(); // #keys
                     const obj: any = {};
                     while (--t >= 0) {
-                        obj[this._decodeValue(buf)] = this._decodeValue(buf);
+                        obj[this.decodeValue(buf)] = this.decodeValue(buf);
                     }
                     return obj;
                 case ARRAY:
                     t = buf.readVarint32(); // #items
                     const arr = [];
                     while (--t >= 0) {
-                        arr.push(this._decodeValue(buf));
+                        arr.push(this.decodeValue(buf));
                     }
                     return arr;
                 case INTEGER:

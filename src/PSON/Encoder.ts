@@ -58,7 +58,7 @@ export class Encoder {
         }
         const le = buf.littleEndian;
         try {
-            this._encodeValue(json, buf.LE(), false);
+            this.encodeValue(json, buf.LE(), false);
             buf.littleEndian = le;
             return doFlip ? buf.flip() : buf;
         } catch (e) {
@@ -74,7 +74,7 @@ export class Encoder {
      * @param {boolean=} excluded Whether keywords are to be excluded or not
      * @private
      */
-    _encodeValue(val: any, buf: ByteBuffer, excluded: boolean) {
+    private encodeValue(val: any, buf: ByteBuffer, excluded: boolean) {
         if (val === null) {
             buf.writeUint8(NULL);
         } else {
@@ -128,7 +128,7 @@ export class Encoder {
                             buf.writeUint8(ARRAY);
                             buf.writeVarint32(val.length);
                             for (i = 0; i < val.length; i++) {
-                                this._encodeValue(val[i], buf, false);
+                                this.encodeValue(val[i], buf, false);
                             }
                         }
                     } else if (Long && val instanceof Long) {
@@ -169,7 +169,7 @@ export class Encoder {
                                         }
                                         buf.writeVString(key);
                                     }
-                                    this._encodeValue(val[key], buf, false);
+                                    this.encodeValue(val[key], buf, false);
                                 }
                             }
                         }
