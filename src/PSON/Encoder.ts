@@ -4,6 +4,7 @@ import {
     STRING_GET,
     TRUE
 } from "./T";
+
 import * as Long from "long";
 
 /**
@@ -131,16 +132,19 @@ export class Encoder {
                                 this.encodeValue(val[i], buf, false);
                             }
                         }
-                    } else if (Long && val instanceof Long) {
+                    } else if (val instanceof Long) {
                         buf.writeUint8(LONG);
                         buf.writeVarint64ZigZag(val);
                     } else {
-                        try {
-                            val = ByteBuffer.wrap(val);
+                        if (val instanceof Buffer
+                            || val instanceof ArrayBuffer
+                            || val instanceof Uint8Array
+                            || val instanceof ByteBuffer) {
+                            val = ByteBuffer.wrap(val); // HOT SPOT
                             buf.writeUint8(BINARY);
                             buf.writeVarint32(val.remaining());
                             buf.append(val);
-                        } catch (e) {
+                        } else {
                             const keys = Object.keys(val);
                             let n = 0;
                             for (i = 0; i < keys.length; i++) {

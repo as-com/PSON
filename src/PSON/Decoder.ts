@@ -4,8 +4,6 @@ import {
     STRING_GET, TRUE
 } from "./T";
 
-import * as Long from "long";
-
 /**
  * Constructs a new PSON Decoder.
  * @exports PSON.Decoder
