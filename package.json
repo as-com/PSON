@@ -46,5 +46,12 @@
         "build": "metascript src/PSON.js src/ > dist/PSON.js",
         "jsdoc": "jsdoc -c jsdoc.json",
         "make": "npm run-script build && npm run-script compile && npm test && npm run-script jsdoc"
-    }
+    },
+	"testObj": {
+		"A": 1,
+		"B": 3444,
+		"C": [7654, 23, 3],
+		"Ddccdscds": "laskdjncldkjc[]-ok,..",
+		"bigint": 1099511627776
+	}
 }

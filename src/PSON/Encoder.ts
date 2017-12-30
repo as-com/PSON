@@ -75,9 +75,7 @@ export class Encoder {
 	 * @private
 	 */
 	private encodeValue(val: any, buf: ByteBuffer, excluded: boolean) {
-		if (val === null) {
-			buf.writeUint8(NULL);
-		} else {
+		if (val !== null) {
 			switch (typeof val) {
 				case 'function':
 					val = val.toString();
@@ -96,14 +94,19 @@ export class Encoder {
 					}
 					break;
 				case 'number':
-					const intVal = parseInt(val);
-					if (val === intVal) {
-						const zzval = ByteBuffer.zigZagEncode32(val); // unsigned
-						if (zzval <= MAX) {
-							buf.writeUint8(zzval);
+					const isInt = val % 1 === 0;
+					if (isInt) {
+						if (val <= 2147483647 && val >= -2147483648) {
+							const zzval = ByteBuffer.zigZagEncode32(val); // unsigned
+							if (zzval <= MAX) {
+								buf.writeUint8(zzval);
+							} else {
+								buf.writeUint8(INTEGER);
+								buf.writeVarint32ZigZag(val);
+							}
 						} else {
-							buf.writeUint8(INTEGER);
-							buf.writeVarint32ZigZag(val);
+							buf.writeUint8(LONG);
+							buf.writeVarint64ZigZag(val);
 						}
 					} else {
 						fbuf.writeFloat32(val, 0);
@@ -182,6 +185,8 @@ export class Encoder {
 					buf.writeUint8(NULL);
 					break;
 			}
+		} else {
+			buf.writeUint8(NULL);
 		}
 	}
 }

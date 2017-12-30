@@ -34,7 +34,7 @@ console.log("end");
 const pson = new ProgressivePair([], {});
 const oldPson = new OldPson.ProgressivePair([]);
 const newEnc = pson.toBuffer(packageJson);
-const oldDec = oldPson.decode(newEnc);
+const oldDec = pson.decode(newEnc);
 console.log("Roundtrip", isEqual(packageJson, oldDec));
 
 // Round trip test

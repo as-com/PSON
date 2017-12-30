@@ -11,7 +11,7 @@
 		"sourceMap": true,
 		// "outFile": "./",                       /* Concatenate and emit output to single file. */
 		"outDir": "./dist",
-		"rootDir": "./src",
+//		"rootDir": "./src",
 		// "removeComments": true,                /* Do not emit comments to output. */
 		// "noEmit": true,                        /* Do not emit outputs. */
 		// "importHelpers": true,                 /* Import emit helpers from 'tslib'. */
