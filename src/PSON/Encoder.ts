@@ -26,7 +26,7 @@ export class Encoder {
 	/**
 	 * Dictionary hash.
 	 */
-	private dict = new Map<string, number>();
+	private dict: Map<string, number> = new Map();
 
 	/**
 	 * Next dictionary index.
@@ -57,7 +57,7 @@ export class Encoder {
 		}
 		const le = buf.littleEndian;
 		try {
-			this.encodeValue(json, buf.LE(), false);
+			this.encodeValue(json, buf.LE());
 			buf.littleEndian = le;
 			return doFlip ? buf.flip() : buf;
 		} catch (e) {
@@ -70,10 +70,9 @@ export class Encoder {
 	 * Encodes a single JSON value to PSON.
 	 * @param {*} val JSON value
 	 * @param {!ByteBuffer} buf Target buffer
-	 * @param {boolean=} excluded Whether keywords are to be excluded or not
 	 * @private
 	 */
-	private encodeValue(val: any, buf: ByteBuffer, excluded: boolean) {
+	private encodeValue(val: any, buf: ByteBuffer) {
 		if (val !== null) {
 			switch (typeof val) {
 				case 'function':
@@ -130,7 +129,7 @@ export class Encoder {
 							buf.writeUint8(ARRAY);
 							buf.writeVarint32(val.length);
 							for (i = 0; i < val.length; i++) {
-								this.encodeValue(val[i], buf, false);
+								this.encodeValue(val[i], buf);
 							}
 						}
 					} else if (val instanceof Long) {
@@ -156,7 +155,6 @@ export class Encoder {
 							} else {
 								buf.writeUint8(OBJECT);
 								buf.writeVarint32(n);
-								if (!excluded) excluded = !!val._PSON_EXCL_;
 								for (i = 0; i < keys.length; i++) {
 									const key = keys[i];
 									if (typeof val[key] === 'undefined') continue;
@@ -164,7 +162,7 @@ export class Encoder {
 										buf.writeUint8(STRING_GET);
 										buf.writeVarint32(<number> this.dict.get(key));
 									} else {
-										if (this.progressive && !excluded) {
+										if (this.progressive) {
 											// Add to dictionary
 											this.dict.set(key, this.next++);
 											buf.writeUint8(STRING_ADD);
@@ -174,7 +172,7 @@ export class Encoder {
 										}
 										buf.writeVString(key);
 									}
-									this.encodeValue(val[key], buf, false);
+									this.encodeValue(val[key], buf);
 								}
 							}
 						}

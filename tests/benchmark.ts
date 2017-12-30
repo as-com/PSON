@@ -22,12 +22,19 @@ for (let j = 0; j < 1; j++) {
 	// }
 	// console.timeEnd("direct package.json");
 	//
-	const oldPson = new OldPson.ProgressivePair([]);
-	console.time("old package.json");
+	// const oldPson = new OldPson.ProgressivePair([]);
+	// console.time("old package.json");
+	// for (let i = 0; i < 50000; i++) {
+	// 	oldPson.encode(packageJson);
+	// }
+	// console.timeEnd("old package.json");
+
+
+	console.time("json package.json");
 	for (let i = 0; i < 50000; i++) {
-		oldPson.encode(packageJson);
+		JSON.stringify(packageJson);
 	}
-	console.timeEnd("old package.json");
+	console.timeEnd("json package.json");
 }
 
 console.log("end");
