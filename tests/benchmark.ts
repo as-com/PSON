@@ -6,25 +6,25 @@ const OldPson = require("pson");
 
 const packageJson = require("../package.json");
 
-for (let j = 0; j < 3; j++) {
+for (let j = 0; j < 1; j++) {
 	const pson = new ProgressivePair([], {});
 
 	console.time("package.json");
-	for (let i = 0; i < 20000; i++) {
+	for (let i = 0; i < 50000; i++) {
 		pson.encode(packageJson);
 	}
 	console.timeEnd("package.json");
 	//
 	// const encoder = new Encoder([], true, {});
 	// console.time("direct package.json");
-	// for (let i = 0; i < 20000; i++) {
+	// for (let i = 0; i < 50000; i++) {
 	//     encoder.encode(packageJson);
 	// }
 	// console.timeEnd("direct package.json");
 	//
 	const oldPson = new OldPson.ProgressivePair([]);
 	console.time("old package.json");
-	for (let i = 0; i < 20000; i++) {
+	for (let i = 0; i < 50000; i++) {
 		oldPson.encode(packageJson);
 	}
 	console.timeEnd("old package.json");
