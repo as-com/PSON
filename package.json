@@ -4,6 +4,7 @@
     "version": "3.0.0",
     "author": "Andrew Sun",
     "main": "dist/PSON.js",
+    "private": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/as-com/PSON.git"

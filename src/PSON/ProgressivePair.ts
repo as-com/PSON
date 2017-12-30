@@ -11,12 +11,12 @@ import {Decoder} from "./Decoder";
  * @constructor
  */
 export class ProgressivePair extends Pair {
-    constructor(dict: string[], options: { [key: string]: any }) {
-        super();
+	constructor(dict: string[], options: { [key: string]: any }) {
+		super();
 
-        this.encoder = new Encoder(dict, true, options);
-        this.decoder = new Decoder(dict, true, options);
-    }
+		this.encoder = new Encoder(dict, true, options);
+		this.decoder = new Decoder(dict, true, options);
+	}
 }
 
 

@@ -11,10 +11,10 @@ import {Decoder} from "./Decoder";
  * @constructor
  */
 export class StaticPair extends Pair {
-    constructor(dict: string[], options: { [key: string]: any }) {
-        super();
+	constructor(dict: string[], options: { [key: string]: any }) {
+		super();
 
-        this.encoder = new Encoder(dict, false, options);
-        this.decoder = new Decoder(dict, false, options);
-    }
+		this.encoder = new Encoder(dict, false, options);
+		this.decoder = new Decoder(dict, false, options);
+	}
 }
