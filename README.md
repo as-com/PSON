@@ -3,6 +3,10 @@
 
 This fork of PSON ports everything to TypeScript contains performance enhancements. Encoding is now about 300% faster.
 
+TODO: Re-introduce exclusion capability without affecting performance too much
+
+TODO: Optimize decoder
+
 **PSON** is a super efficient binary serialization format for JSON focused on minimal encoding size.
 
 How does it work?

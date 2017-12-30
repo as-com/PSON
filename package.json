@@ -1,52 +1,61 @@
 {
-    "name": "@as-com/pson",
-    "description": "A super efficient binary serialization format for JSON.",
-    "version": "3.0.0",
-    "author": "Andrew Sun",
-    "main": "dist/PSON.js",
-    "private": false,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/as-com/PSON.git"
-    },
-    "bugs": {
-        "url": "https://github.com/as-com/PSON/issues"
-    },
-    "keywords": [
-        "net",
-        "buffer",
-        "serialization",
-        "bytebuffer",
-        "websocket",
-        "webrtc",
-        "json",
-        "protobuf",
-        "thrift"
-    ],
-    "license": "Apache-2.0",
-    "engines": {
-        "node": ">=6"
-    },
-    "dependencies": {
-        "bytebuffer": "^5.0.1",
-        "long": "^3.2.0"
-    },
-    "devDependencies": {
-        "@types/bytebuffer": "^5.0.34",
-        "@types/lodash": "^4.14.91",
-        "@types/node": "^8.5.2",
-        "lodash": "^4.17.4",
-        "pson": "^2.0.0",
-        "ts-node": "^4.1.0",
-        "typescript": "^2.6.2"
-    },
-    "scripts": {
-        "build": "tsc"
-    },
+	"name": "@as-com/pson",
+	"description": "A super efficient binary serialization format for JSON.",
+	"version": "3.0.0",
+	"author": "Andrew Sun",
+	"main": "dist/PSON.js",
+	"private": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/as-com/PSON.git"
+	},
+	"bugs": {
+		"url": "https://github.com/as-com/PSON/issues"
+	},
+	"keywords": [
+		"net",
+		"buffer",
+		"serialization",
+		"bytebuffer",
+		"websocket",
+		"webrtc",
+		"json",
+		"protobuf",
+		"thrift"
+	],
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"license": "Apache-2.0",
+	"engines": {
+		"node": ">=6"
+	},
+	"dependencies": {
+		"bytebuffer": "^5.0.1",
+		"long": "^3.2.0"
+	},
+	"devDependencies": {
+		"@types/bytebuffer": "^5.0.34",
+		"@types/lodash": "^4.14.91",
+		"@types/node": "^8.5.2",
+		"lodash": "^4.17.4",
+		"pson": "^2.0.0",
+		"ts-node": "^4.1.0",
+		"typescript": "^2.6.2"
+	},
+	"scripts": {
+		"build": "tsc"
+	},
 	"testObj": {
 		"A": 1,
 		"B": 3444,
-		"C": [7654, 23, 3, 1099511627746],
+		"C": [
+			7654,
+			23,
+			3,
+			1099511627746
+		],
 		"Ddccdscds": "laskdjncldkjc[]-ok,..",
 		"bigint": 1099511627776
 	}
