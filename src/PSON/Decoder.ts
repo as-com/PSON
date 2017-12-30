@@ -78,7 +78,7 @@ export class Decoder {
 					}
 					return arr;
 				case INTEGER:
-					return (<any> buf)["readVarint32ZigZag"](); // TODO: https://github.com/DefinitelyTyped/DefinitelyTyped/pull/22580
+					return <number> (<any> buf).readVarint32ZigZag(); // TODO: https://github.com/DefinitelyTyped/DefinitelyTyped/pull/22580
 				case LONG:
 					const r = buf.readVarint64ZigZag();
 					if (r.lessThanOrEqual(Number.MAX_SAFE_INTEGER) && r.greaterThanOrEqual(Number.MIN_SAFE_INTEGER)) {

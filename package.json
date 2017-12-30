@@ -37,20 +37,16 @@
         "@types/node": "^8.5.2",
         "lodash": "^4.17.4",
         "pson": "^2.0.0",
-        "testjs": "~1",
         "ts-node": "^4.1.0",
         "typescript": "^2.6.2"
     },
     "scripts": {
-        "test": "testjs",
-        "build": "metascript src/PSON.js src/ > dist/PSON.js",
-        "jsdoc": "jsdoc -c jsdoc.json",
-        "make": "npm run-script build && npm run-script compile && npm test && npm run-script jsdoc"
+        "build": "tsc"
     },
 	"testObj": {
 		"A": 1,
 		"B": 3444,
-		"C": [7654, 23, 3],
+		"C": [7654, 23, 3, 1099511627746],
 		"Ddccdscds": "laskdjncldkjc[]-ok,..",
 		"bigint": 1099511627776
 	}
