@@ -1,13 +1,18 @@
-![PSON](https://raw.github.com/dcodeIO/PSON/master/PSON.png)
+![PSON](PSON.png)
 ====
 
-This fork of PSON ports everything to TypeScript contains performance enhancements. Encoding is now about 300% faster.
-
-TODO: Re-introduce exclusion capability without affecting performance too much
-
-TODO: Optimize decoder
-
 **PSON** is a super efficient binary serialization format for JSON focused on minimal encoding size.
+
+What's changed in this fork
+----
+* Everything has been ported to TypeScript
+* Integers between 2^31 and 2^53 are now encoded correctly
+* Encoding is now 300% faster
+
+Current TODOs
+----
+- [ ] Re-introduce exclusion capability without affecting performance too much
+- [ ] Optimize decoder
 
 How does it work?
 -----------------
@@ -29,10 +34,10 @@ This repository contains a plain **node.js/CommonJS, RequireJS/AMD and Browser c
 of the [PSON specification](https://github.com/dcodeIO/PSON/blob/master/PSONspec.txt) on top of 
 [ByteBuffer.js](https://github.com/dcodeIO/ByteBuffer.js) and optionally [Long.js](https://github.com/dcodeIO/Long.js):
 
-A **PSON.StaticPair** contains the PSON encoder and decoder for a static (or empty) dictionary and can be shared between
+A **StaticPair** contains the PSON encoder and decoder for a static (or empty) dictionary and can be shared between
 all connections. It's recommended for production.
 
-A **PSON.ProgressivePair** contains the PSON encoder and decoder for a progressive (automatically filling) dictionary.
+A **ProgressivePair** contains the PSON encoder and decoder for a progressive (automatically filling) dictionary.
 On the one hand this requires no dictionary work from the developer but on the other requires one pair per connection.
 
 tl;dr Numbers, please!
@@ -77,43 +82,18 @@ centered file, to PSON using a general purpose static dictionary:
 Usage
 -----
 
-#### node.js/CommonJS
-
-`npm install pson`
-
+```
+$ npm install @as-com/pson
+```
+### CommonJS
 ```js
-var PSON = require("pson");
+const {ProgressivePair, ...} = require("@as-com/pson");
 ...
 ```
 
-#### RequireJS/AMD
-
+### ES6 Imports
 ```js
-require.config({
-    ...
-    "paths": {
-        "Long": "/path/to/Long.js", // optional
-        "ByteBuffer": "/path/to/ByteBufferAB.js",
-        "PSON": "/path/to/PSON.ts"
-    },
-    ...
-});
-require(["PSON"], function(PSON) {
-    ...
-});
-```
-
-#### Browser
-
-```html
-<script src="Long.min.js"></script>
-<script src="ByteBufferAB.min.js"></script>
-<script src="PSON.min.js"></script>
-```
-
-```js
-var PSON = dcodeIO.PSON;
-...
+import {ProgressivePair} from "@as-com/pson";
 ```
 
 Example
@@ -147,25 +127,19 @@ The API is pretty much straight forward:
 * `PSON.Pair#decode(pson: ByteBuffer|Buffer|ArrayBuffer): *` decodes PSON data to JSON
 
 #### Progressive
-* `new PSON.ProgressivePair([initialDictionary: Array.<string>])` constructs a new progressive encoder and decoder pair
+* `new ProgressivePair([initialDictionary: Array.<string>])` constructs a new progressive encoder and decoder pair
   with an automatically filling keyword dictionary
-* `PSON.ProgressivePair#exclude(obj: Object)` Excludes an object's and its children's keywords from being added to the progressive
+* `ProgressivePair#exclude(obj: Object)` Excludes an object's and its children's keywords from being added to the progressive
    dictionary
-* `PSON.ProgressivePair#include(obj: Object)` Undoes the former
+* `ProgressivePair#include(obj: Object)` Undoes the former
 
 #### Static
-* `new PSON.StaticPair([dictionary: Array.<string>])` constructs a new static encoder and decoder pair
+* `new StaticPair([dictionary: Array.<string>])` constructs a new static encoder and decoder pair
   with a static (or empty) dictionary
-  
-Downloads
----------
-* [Distributions](https://github.com/dcodeIO/PSON/tree/master/dist)
-* [ZIP-Archive](https://github.com/dcodeIO/PSON/archive/master.zip)
-* [Tarball](https://github.com/dcodeIO/PSON/tarball/master)
   
 Documentation
 -------------
 * [PSON specification](https://github.com/dcodeIO/PSON/blob/master/PSONspec.txt)
-* [API documentation](http://htmlpreview.github.io/?http://raw.github.com/dcodeIO/PSON/master/docs/PSON.html)
+* ~~[API documentation](http://htmlpreview.github.io/?http://raw.github.com/dcodeIO/PSON/master/docs/PSON.html)~~
 
 **License:** [Apache License, Version 2.0](http://opensource.org/licenses/Apache-2.0)
