@@ -10,8 +10,8 @@ import * as ByteBuffer from "bytebuffer";
  * @abstract
  */
 export abstract class Pair {
-	protected encoder: Encoder;
-	protected decoder: Decoder;
+	protected encoder!: Encoder;
+	protected decoder!: Decoder;
 
 	/**
 	 * Encodes JSON to PSON.
